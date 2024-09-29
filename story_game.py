@@ -1,6 +1,16 @@
 import random
 
-TIME_PERIOD = "1950"
+TIME_PERIOD = "2024"
+US_DOL = 1
+GMN_DEM = 381.25
+JPN_YEN = 142.22
+FRN_EUR = 0.9
+UK_PD = 0.75
+CHN_YUAN = 7.01
+RSN_RBL = 94.36
+IRAN_RIAL = 42105
+
+US_DOL == GMN_DEM and JPN_YEN and FRN_EUR and UK_PD and CHN_YUAN and RSN_RBL and IRAN_RIAL
 
 def rand_country_value():
     """Choose value for starting country"""
