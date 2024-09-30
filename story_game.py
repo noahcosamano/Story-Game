@@ -80,26 +80,36 @@ def convert_starting_money_to_default_currency(class_name, country_name):
     return currency_convert("USD", default_currency, starting_usd)
 
 def main():
+    
     country_value = rand_country_value()
     class_value = rand_class_value()
     
     country_name = start_country(country_value)
     class_name = start_class(class_value)
 
-    print(f"The year is {TIME_PERIOD} in {country_name}. It is your job as a(n) {class_name} to lead your country to worldwide rule!")
+    article_citizen = "citizen" if class_name in ["Lower Class", "Middle Class", "Upper Class"] else ""
+    article_the = "the" if country_name in ["United Kingdom", "USA"] else ""
+
+    print(f"The year is {TIME_PERIOD} in {article_the} {country_name}. It is your job as a(n) {class_name} {article_citizen} to lead your country to worldwide rule!")
     
     default_money = convert_starting_money_to_default_currency(class_name, country_name)
-    print(f"As a(n) {class_name}, you start with {default_money} {determine_default_currency(country_name)}.")
+    print(f"As a(n) {class_name} {article_citizen}, you start with {default_money} {determine_default_currency(country_name)}.")
+    
     
     print("Currency options are as follows:")
     for name in currencies:
         print(name)
 
+    print("If you do not wish to convert currency, type EXIT.")
+
     convert_from = input("Choose the currency type to convert from: ")
     convert_from = convert_from.upper()
-    if convert_from not in currencies:
+    if convert_from == "EXIT":
+        print("EXITED CONVERSION")
+        return
+    elif convert_from not in currencies:
         print("Error: Not a currency type")
-        sys.exit()
+        return
 
     amount_of_currency = input("Enter the amount of currency: ")
     try:
