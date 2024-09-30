@@ -74,21 +74,22 @@ def starting_money(class_name):
     }
     return money_map.get(class_name, 0)
 
-def main():
+def convert_starting_money_to_default_currency(class_name, country_name):
+    starting_usd = starting_money(class_name)
+    default_currency = determine_default_currency(country_name)
+    return currency_convert("USD", default_currency, starting_usd)
 
+def main():
     country_value = rand_country_value()
     class_value = rand_class_value()
     
     country_name = start_country(country_value)
     class_name = start_class(class_value)
 
-    article = "the" if country_name in ["USA", "United Kingdom"] else "" 
-    article_two = "citizen" if class_name in ["Lower Class","Middle Class","Upper Class"] else ""
-
-    print(f"The year is {TIME_PERIOD} in {article} {country_name}. It is your job as a(n) {class_name} {article_two} to lead your country to worldwide rule!")
+    print(f"The year is {TIME_PERIOD} in {country_name}. It is your job as a(n) {class_name} to lead your country to worldwide rule!")
     
-    money = starting_money(class_name)
-    print(f"As a(n) {class_name} {article_two}, you start with {money} {determine_default_currency(country_name)}.")
+    default_money = convert_starting_money_to_default_currency(class_name, country_name)
+    print(f"As a(n) {class_name}, you start with {default_money} {determine_default_currency(country_name)}.")
     
     print("Currency options are as follows:")
     for name in currencies:
